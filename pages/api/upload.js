@@ -7,7 +7,7 @@ export const config = {
     }
   };
 
-  const { serverRuntimeConfig } = getConfig()
+const { serverRuntimeConfig } = getConfig()
 
 const post = async (req, res) => {
 
@@ -23,14 +23,15 @@ const post = async (req, res) => {
         }
     })
 
-    return axiosRequest.data;
+
+    return axiosRequest;
 
   };
 
   export default async function handler(req, res) {
       if(req.method == "POST"){
         const response = await post(req, res);
-        res.status(response.statusCode).send(response.data);
+        res.status(response.status).send(response.data);
       }else{
         res.status(404).json({ name: 'invalid request' });
       }
